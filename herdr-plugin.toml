@@ -1,0 +1,38 @@
+id = "repo-worktrees"
+name = "Repo Worktrees"
+version = "0.1.0"
+min_herdr_version = "0.9.5"
+description = "Git worktrees inside the repo (<repo>/.worktrees/<name>) as grouped Herdr workspaces"
+platforms = ["linux", "macos"]
+
+# Each action opens its popup pane. The popup is a plugin pane, which gives it
+# a terminal for the prompts; it reads the focused pane and workspace from
+# HERDR_PLUGIN_CONTEXT_JSON, which Herdr fills when the action runs.
+
+[[actions]]
+id = "new"
+title = "New repo-local worktree"
+contexts = ["global"]
+command = ["bash", "scripts/open-popup.sh", "new"]
+
+[[actions]]
+id = "remove"
+title = "Remove worktree"
+contexts = ["global"]
+command = ["bash", "scripts/open-popup.sh", "remove"]
+
+[[panes]]
+id = "new"
+title = "New worktree"
+placement = "popup"
+width = "60%"
+height = "30%"
+command = ["bash", "scripts/new.sh"]
+
+[[panes]]
+id = "remove"
+title = "Remove worktree"
+placement = "popup"
+width = "60%"
+height = "30%"
+command = ["bash", "scripts/remove.sh"]
